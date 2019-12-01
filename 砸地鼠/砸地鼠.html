@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        .box{
+            width: 900px;
+            height: 600px;
+            margin: 0 auto;
+            margin-top: 100px;
+        }
+        img{
+            width: 100px;
+            height: 100px;
+            display: none;
+            cursor:pointer;
+        }
+        .comtainer{
+            width: 100px;
+            height: 100px;
+            border: 1px solid red;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+        积分<span></span>
+        <!-- <button>调整速度</button> -->
+        <p><button>调整速度加快0.1s</button></p>
+    <div class="box">
+        <div class="comtainer">
+            <img src="./images/地鼠.jpg" alt="">
+        </div>
+    </div>
+</body>
+<script>
+    let box=document.querySelector('.box');
+    let span=document.querySelector('span');
+    let button=document.querySelector('button')
+    let num;
+    for(let i=0;i<=43;i++){
+        let comtainer=document.createElement('div');
+        let img=document.createElement('img');
+        comtainer.classList.add('comtainer');
+        img.src=`./images/地鼠.jpg`;
+        comtainer.appendChild(img);
+        box.appendChild(comtainer);
+    }
+    let img=document.querySelectorAll('img');
+    var time=800;
+
+    
+    let timeid=setInterval(function(){
+        num=Math.floor(Math.random()*40);
+        // img.style.display='none';
+        img.forEach(e=>{
+            e.style.display='none';
+        })
+        img[num].style.display='block';
+    },time);
+
+    button.onclick=function(){
+        clearInterval(timeid);
+        time-=100;
+        timeid=setInterval(function(){
+        num=Math.floor(Math.random()*40);
+        // img.style.display='none';
+        img.forEach(e=>{
+            e.style.display='none';
+        })
+        img[num].style.display='block';
+    },time);
+    };
+    // console.log(time);
+
+    let number=0;
+    img.forEach(e=>{
+        e.onclick=function(){
+            number++;
+            span.innerText=number;
+            // img.css.opacity=0.5+'s';
+        }
+    })
+</script>
+</html>
